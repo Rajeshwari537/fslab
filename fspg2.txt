@@ -1,0 +1,97 @@
+import { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [candidates, setCandidates] = useState([
+    {
+      sno: 1,
+      name: "Candidate A",
+      party: "BJP",
+      symbol: "https://via.placeholder.com/50?text=BJP",
+      count: 3,
+    },
+    {
+      sno: 2,
+      name: "Candidate B",
+      party: "CONGRESS",
+      symbol: "https://via.placeholder.com/50?text=INC",
+      count: 4,
+    },
+    {
+      sno: 3,
+      name: "Candidate C",
+      party: "JDS",
+      symbol: "https://via.placeholder.com/50?text=JDS",
+      count: 2,
+    },
+    {
+      sno: 4,
+      name: "Candidate D",
+      party: "AAP",
+      symbol: "https://via.placeholder.com/50?text=AAP",
+      count: 3,
+    },
+    {
+      sno: 5,
+      name: "Candidate E",
+      party: "OTHER",
+      symbol: "https://via.placeholder.com/50?text=OTH",
+      count: 1,
+    },
+  ]);
+
+  const handleVote = (index) => {
+    const updatedCandidates = [...candidates];
+    updatedCandidates[index].count++;
+    setCandidates(updatedCandidates);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <h1>VOTING APPLICATION</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>SNO</th>
+              <th>CANDIDATE NAME</th>
+              <th>PARTY</th>
+              <th>SYMBOL</th>
+              <th>BUTTON</th>
+              <th>COUNT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {candidates.map((candidate, index) => (
+              <tr key={candidate.sno}>
+                <td>{candidate.sno}</td>
+                <td>{candidate.name}</td>
+                <td>{candidate.party}</td>
+
+                <td>
+                  <img
+                    src={candidate.symbol}
+                    alt="Party Symbol"
+                    className="symbol"
+                  />
+                </td>
+
+                <td>
+                  <button onClick={() => handleVote(index)}>
+                    VOTE
+                  </button>
+                </td>
+
+                <td>{candidate.count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default App;s
